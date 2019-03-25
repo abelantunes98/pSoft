@@ -5,9 +5,9 @@ import sys
 
 porta = int(sys.argv[1] if len(sys.argv) > 1 else 3100)
 
-with socket.socket() as s:
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # Abrindo porta
-    s.bind(('localhost', porta))
+    s.bind(('', porta))
     # Escutando na porta
     s.listen()
 
