@@ -5,7 +5,7 @@ import socket
 import sys
 import os
 
-porta = int(sys.argv[1] if(len(sys.argv) > 1) else 3103)
+porta = int(sys.argv[1] if(len(sys.argv) > 1) else 3102)
 usuarios = {}
 mensagens = []
 
@@ -29,8 +29,8 @@ def iniciaCliente(endereco, usuarios, mensagens):
                 saida = str(endereco) + " saiu do grupo!" + os.linesep
                 # Transforma em obj que pode ser enviado
                 mensagens.append((endereco, saida.encode('utf-8')))
-
-
+                
+                
 def receberClientes(usuarios, mensagens):
         
     while True:        
@@ -45,7 +45,7 @@ def receberClientes(usuarios, mensagens):
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # Abrindo porta
-    s.bind(('localhost', porta))
+    s.bind(('', porta))
     Thread(target=receberClientes, args=(usuarios, mensagens)).start()
     
     while True:
@@ -53,7 +53,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         while len (mensagens) > 0:
             for cli in usuarios.values():
                 
-                # Olha se o usuario nao e o que mandou a mensagem
+                # Olha se o usuario nao eh o que mandou a mensagem
                 if (mensagens[0][0] not in usuarios.keys()) or (cli != usuarios[mensagens[0][0]]):
                     cli.send(mensagens[0][1])
             mensagens.pop(0)
