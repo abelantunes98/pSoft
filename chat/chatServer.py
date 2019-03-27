@@ -5,7 +5,7 @@ import socket
 import sys
 import os
 
-porta = int(sys.argv[1] if(len(sys.argv) > 1) else 3102)
+porta = int(sys.argv[1] if(len(sys.argv) > 1) else 3101)
 usuarios = {}
 mensagens = []
 
