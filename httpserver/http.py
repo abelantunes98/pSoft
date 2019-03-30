@@ -23,11 +23,11 @@ porta = int(sys.argv[1] if len(sys.argv) > 1 else 8090)
 sk = socket.socket()
 sk.bind(('', porta))
 
-sk.listen(10)
+sk.listen(4)
 print ('Aguardando conexão com a porta %s' % str(porta))
 
 # Dicionarios da pagina de saída
-vrp = {}
+request = {}
 header = {}
 body = {}
 
@@ -54,27 +54,27 @@ def parse_request(mensagem):
         # Verbo recurso e protocolo
         separado = mensagem[0].split()
 
-        vrp["verbo"] = separado[0]
-        vrp["recurso"] = separado[1]
-        vrp["protocolo"] = separado[2]
+        request["verbo"] = separado[0]
+        request["recurso"] = separado[1]
+        request["protocolo"] = separado[2]
         
         # O server só conhece o método GET, se for diferente, já retorna erro
-        if (vrp["verbo"] != "GET"):
+        if (request["verbo"] != "GET"):
             code = 405
             status = "Method Not Allowed"
             corpo_response = "<html><body><center><h3>Error 405: Método Não suportado</h3><p>Python HTTP Server</p></center></body></html>"
         
         else:
             # Antes da ?
-            myfile = vrp["recurso"].split("?")[0]
+            dirRequest = request["recurso"].split("?")[0]
             
             # Se o request pedir a raiz do dir, é pego o nome dos arquivos guardados e gerado links
-            if (myfile == '/'):
+            if (dirRequest == '/'):
                 # Pegando os nomes dos arquivos no diretório do server e gerando o body com seus
                 # nomes
-                for p, _, files in os.walk(os.path.abspath(os.getcwd())):
+                for pathServ, _, files in os.walk(os.path.abspath(os.getcwd())):
                     for file in files:
-                        caminho = os.path.join(p, file).split('/httpserver/', 1)[-1]
+                        caminho = os.path.join(pathServ, file).split('/httpserver/', 1)[-1]
                         corpo_response += "<li><a href='" + caminho + "'>" + caminho + "</a></li>"
 
                 corpo_response += "</ul>"
@@ -85,20 +85,22 @@ def parse_request(mensagem):
                     
                     # Se for pedido um arquivo especifico, seu conteudo será o corpo do response
                     # Isso se o arquivo existir ralmente
-                    myfile = myfile.lstrip('/')
+                    dirRequest = dirRequest.lstrip('/')
                     # Ler arquivo em formato de bytes
-                    file = open(myfile, 'rb')
+                    file = open(dirRequest, 'rb')
                     corpo_response = file.read()
                     corpo_response = corpo_response.decode()
                 
                     file.close()
 
-                    if (myfile.strip(".") == 'jpg'):
+                    if (dirRequest.strip(".") == 'jpg'):
                         mime_type = "image/jpg"
-                    elif (myfile.strip(".") == 'css'):
+                    elif (dirRequest.strip(".") == 'css'):
                         mime_type = "text/css"
-                    elif (myfile.strip(".") == 'html'):
+                    elif (dirRequest.strip(".") == 'html'):
                         mime_type = "text/html"
+                    elif (dirRequest.strip(".") == 'png'):
+                        mime_type = "image/png"
                     else:
                         mime_type = "text/plain"
 
