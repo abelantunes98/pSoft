@@ -28,7 +28,7 @@ public class GreetingController {
 		return saudacao;
 	}
 	
-	@RequestMapping("/greeting/time")
+	@RequestMapping("/timeJson")
 	public Time time() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		String hora_atual = LocalTime.now().format(formatter);
