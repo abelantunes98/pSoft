@@ -1,43 +1,146 @@
-*{margin: 4px; padding: 0;}
-
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
 body{
     font-family: arial, helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
+    
 }
 
 .menu{
     list-style: none;
-    border: 1px solid #c0c0c0;
+    /* padding altera a margem interna */
+    padding: 8px;
     float: left;
-    background-color: aliceblue;
-    font-family: fantasy;
-    font-size: 20px;
+    width: auto;
+    margin: 0;
 }
 
 .menu ul{
     list-style-type: none;
+    float: left;
+    margin: 0;
+    
+}
+
+.menu li {
+    position: relative;
+    float: left;
+    border-right: 2px solid;
     margin: 0;
     padding: 0;
 }
 
-.menu li {
-    display: inline;
+main {    
+    background-color: #BEBEBE;
+    height: 55%;
+    width: 85%;
+    clear: left;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 
-img {
-    float: left;
-    clear: left;
-    border-style: solid;
-    border: 3px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+main h2 {
+    margin-top: 50px;
+    padding: 0;
+}
+
+header h2 {
+    font-family: fantasy;
+    color: white;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    padding: 0;
+}
+.menu li a {
+    font-size: 20px;
+    color: aquamarine;
+    text-decoration: none;
+    padding: 5px;
+    font-family: fantasy;
+    font-style: italic;
+    display: block;
+    margin-right: 8px;
     
 }
-main {
-    clear: left;
+
+.menu li a:hover {
+    background: ;
+    color: #A0522D; 
+    -moz-box-shadow:0 5px 10px 0 black; 
+    -webkit-box-shadow:0 3px 10px 0 black; 
+    text-shadow:0px 0px 5px black; 
 }
 
-main h3 {
+header h1 {
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+}
+asside {
+    background-color: #D3D3D3;
+    width: 15%;
+    height: 85%;
+    display: block;
+    clear: right;
+    float: right;
+    margin: 0;
+}
+
+section {
+    background-color: #696969;
+    height: 30%;
+    width: 85%;
+    clear: none;
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin: 0;
+    float: left;
+    background-color: black;
+    width: 100%;
+    height: 15%;
+    display: inline-block;
+    padding-top: 5px;
+    clear: none;
+    padding-bottom: 5px;
+}
+
+footer {
+    background-color: black;
+    height: 20%;
+    width: 100%;
+    clear: both;
+    margin: 0;
+}
+
+#imagens img {
+    position: relative;
+    margin-left: 10px;
     margin-top: 10px;
-    margin-left: 0px;
+}
+
+footer h2 {
+    color: white;
+}
+
+footer p {
+    margin-left: 130px;
+    color: white;
+    font-size: 18px;
+}
+asside h2 {
+        margin: 30px;
 }
