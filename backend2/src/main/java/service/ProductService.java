@@ -28,7 +28,7 @@ public class ProductService {
 		return productDAO.save(productToUpdate);
 	}
 	
-	public void delet(long id) {
+	public void delete(long id) {
 		productDAO.deleteById(id);
 	}
 	
