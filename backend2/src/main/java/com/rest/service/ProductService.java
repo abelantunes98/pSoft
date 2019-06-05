@@ -1,9 +1,11 @@
-package service;
+package com.rest.service;
 
 import org.springframework.stereotype.Service;
 
-import dao.ProductDAO;
-import model.Product;
+import com.rest.dao.ProductDAO;
+import com.rest.model.Product;
+
+import com.exception.product.ProductNotFoundException;
 
 @Service
 public class ProductService {
@@ -18,7 +20,7 @@ public class ProductService {
 		return productDAO.save(product);
 	}
 	
-	public Product update (Product productToUpdate) throws ProductNotFoundException {
+	public Product update(Product productToUpdate) throws ProductNotFoundException {
 		
 		Product product = productDAO.findById(productToUpdate.getId());
 		if (product == null) {

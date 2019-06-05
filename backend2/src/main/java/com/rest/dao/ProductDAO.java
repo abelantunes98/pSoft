@@ -1,11 +1,11 @@
-package dao;
+package com.rest.dao;
 
 import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import model.Product;
+import com.rest.model.Product;
 
 @Repository
 public interface ProductDAO<T, ID extends Serializable> extends

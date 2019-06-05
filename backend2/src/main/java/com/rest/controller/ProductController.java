@@ -1,4 +1,6 @@
-package controller;
+package com.rest.controller;
+
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.Product;
-import service.ProductService;
+import com.rest.service.ProductService;
+import com.exception.product.ProductNotFoundException;
+import com.rest.model.Product;
 
 @RestController
 @RequestMapping({ "/v1/products" })
@@ -20,11 +23,11 @@ public class ProductController {
 
 	private ProductService productService;
 
-	ProductController(ProductService productService) {
+	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity<Product> findById(@PathVariable long id) {
 		Product product = productService.findById(id);
@@ -48,7 +51,13 @@ public class ProductController {
 
 	    return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
 	   }
-	
+/**	
+	@GetMapping("/")
+	public ResponseEntity<List<Product>> listall() {
+		List<Product> products = productService.list();
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+**/	
 	@DeleteMapping(value = "/{id}")
 	   public ResponseEntity delete(@PathVariable long id) {
 	       try {
