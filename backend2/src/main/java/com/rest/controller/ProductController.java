@@ -18,7 +18,7 @@ import com.exception.product.ProductNotFoundException;
 import com.rest.model.Product;
 
 @RestController
-@RequestMapping({ "/v1/products" })
+@RequestMapping({ "/v1/product" })
 public class ProductController {
 
 	private ProductService productService;
@@ -39,7 +39,7 @@ public class ProductController {
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/")
+	@PostMapping("/")
 	@ResponseBody
 	public ResponseEntity<Product> create(@RequestBody Product product  ) {
 		Product newProduct = productService.create(product);
@@ -51,13 +51,13 @@ public class ProductController {
 
 	    return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
 	   }
-/**	
+
 	@GetMapping("/")
 	public ResponseEntity<List<Product>> listall() {
 		List<Product> products = productService.list();
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
-**/	
+
 	@DeleteMapping(value = "/{id}")
 	   public ResponseEntity delete(@PathVariable long id) {
 	       try {

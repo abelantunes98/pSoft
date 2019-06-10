@@ -1,5 +1,7 @@
 package com.rest.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.rest.dao.ProductDAO;
@@ -36,6 +38,11 @@ public class ProductService {
 	
 	public Product findById(long id) {
 		return productDAO.findById(id);
+	}
+
+	public List<Product> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

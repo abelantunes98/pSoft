@@ -20,7 +20,7 @@ public class RestExceptionHandler {
 
    @ExceptionHandler({ProductNotFoundException.class, })
    public ResponseEntity<CustomRestError> notFound(Exception ex, WebRequest request) {
-       CustomRestError errorMessage = new CustomRestError(new Date(), ex.getMessage(), request.getDescription(false));
+       CustomRestError errorMessage = new CustomRestError(new Date(), "ola", request.getDescription(false));
        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND);
    }
 }
